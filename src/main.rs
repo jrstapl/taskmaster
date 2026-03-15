@@ -76,7 +76,7 @@ fn main() {
         .arg(
             Arg::new("id")
                 .long("id")
-                .help("ID of the of the ToDo item, found with todui list")
+                .help("ID of the of the ToDo item, found with `taskmaster list`")
                 .required(false)
                 .value_parser(value_parser!(i32))
                 .default_value("-1")
@@ -187,7 +187,7 @@ fn remove_todo(matches: &ArgMatches) {
 
     if todo_id < 0 {
         println!(
-            "Must remove a todo by id, use `todui list` to find the id of the todo you'd like to remove"
+            "Must remove a todo by id, use `taskmaster list` to find the id of the todo you'd like to remove"
         );
         return;
     }

@@ -3,27 +3,31 @@ use std::fs;
 use std::path::PathBuf;
 
 use chrono::{Local, NaiveDate};
+use directories::ProjectDirs;
 use rusqlite::Connection;
 
 use crate::todo::ToDo;
 
-fn get_todui_data_dir() -> PathBuf {
-    let home_name: PathBuf = match env::home_dir() {
-        Some(p) => p,
-        None => panic!(
-            "Home directory not found! Make sure $HOME is set on Linux/MacOS or %USERPROFILE% on Windows",
-        ),
-    };
-
-    let app_dir = home_name.join(".local/todui");
-    if !app_dir.exists() {
-        fs::create_dir_all(app_dir.clone()).expect("Unable to create $HOME/.local/todui");
+fn get_data_dir() -> PathBuf {
+    if let Some(proj_dirs) = ProjectDirs::from("com", "jrstaple", "taskmaster") {
+        proj_dirs.data_dir().to_path_buf()
+    } else {
+        let home_name: PathBuf = match env::home_dir() {
+            Some(p) => p,
+            None => panic!(
+                "Home directory not found! Make sure $HOME is set on Linux/MacOS or %USERPROFILE% on Windows",
+            ),
+        };
+        let app_dir = home_name.join(".local/taskmaster");
+        if !app_dir.exists() {
+            fs::create_dir_all(app_dir.clone()).expect("Unable to create $HOME/.local/taskmaster");
+        }
+        return app_dir;
     }
-    return app_dir;
 }
 
-fn get_todui_db_dir() -> PathBuf {
-    let app_dir = get_todui_data_dir();
+fn get_db_dir() -> PathBuf {
+    let app_dir = get_data_dir();
 
     let db_dir = app_dir.join("db");
     if !db_dir.exists() {
@@ -34,7 +38,7 @@ fn get_todui_db_dir() -> PathBuf {
 }
 
 pub fn get_todo_db_conn() -> Connection {
-    let db_dir = get_todui_db_dir();
+    let db_dir = get_db_dir();
 
     let db_file = db_dir.join("todo.db");
     let conn = initialize_todo_db(&db_file);
@@ -43,7 +47,7 @@ pub fn get_todo_db_conn() -> Connection {
 }
 
 pub fn get_completed_db_conn() -> Connection {
-    let db_dir = get_todui_db_dir();
+    let db_dir = get_db_dir();
 
     let db_file = db_dir.join("completed.db");
     let conn = initialize_todo_db(&db_file);
