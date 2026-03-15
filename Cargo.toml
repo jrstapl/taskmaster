@@ -5,6 +5,10 @@ description = "A terminal ToDo application."
 authors = ["jrstaple <joshrstapleton@gmail.com>"]
 license = "Attribution-NonCommercial-ShareAlike 4.0 International"
 edition = "2024"
+exclude = [
+    "example/*",
+]
+repository = "https://github.com/jrstapl/taskmaster.git"
 
 [dependencies]
 crossterm = { version = "0.28.1", features = ["event-stream"] }
@@ -15,13 +19,6 @@ color-eyre = "0.6.3"
 clap = { version = "4.5.60", features = ["cargo", "string"] }
 chrono = "0.4.44"
 rusqlite = { version = "0.38.0", features = ["bundled"] }
-
-
-[package]
-exclude = [
-    "example/*",
-]
-repository = "https://github.com/jrstapl/taskmaster.git"
 
 # Read the optimization guideline for more details: https://ratatui.rs/recipes/apps/release-your-app/#optimizations
 [profile.release]
