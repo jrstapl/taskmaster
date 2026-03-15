@@ -17,6 +17,12 @@ chrono = "0.4.44"
 rusqlite = { version = "0.38.0", features = ["bundled"] }
 
 
+[package]
+exclude = [
+    "example/*",
+]
+repository = "https://github.com/jrstapl/taskmaster.git"
+
 # Read the optimization guideline for more details: https://ratatui.rs/recipes/apps/release-your-app/#optimizations
 [profile.release]
 codegen-units = 1
