@@ -3,7 +3,7 @@ name = "taskmaster"
 version = "0.1.0"
 description = "A terminal ToDo application."
 authors = ["jrstaple <joshrstapleton@gmail.com>"]
-license = "Attribution-NonCommercial-ShareAlike 4.0 International"
+license = "Attribution-NonCommercial-ShareAlike-4.0-International"
 edition = "2024"
 exclude = [
     "example/*",
