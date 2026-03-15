@@ -1,6 +1,6 @@
 [package]
 name = "taskmaster"
-version = "0.1.0"
+version = "0.1.1"
 description = "A terminal ToDo application."
 authors = ["jrstaple <joshrstapleton@gmail.com>"]
 license = "CC-BY-NC-SA-4.0"

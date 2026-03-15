@@ -30,7 +30,7 @@ fn main() {
 
     let cmd = Command::new("Taskmaster")
         .author("Joshua Stapleton, joshrstapleton@gmail.com")
-        .version("0.1.0")
+        .version("0.1.1")
         .about("TUI and CLI for ToDo list management")
         .arg(
             Arg::new("db_path")
